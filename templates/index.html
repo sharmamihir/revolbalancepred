@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Group 1 Project	</title>
+  <style type="text/css">
+    h1{
+      color: Crimson;
+  font: bold; 40px "Times New Roman", Times, serif;
+  font-style: italic;
+  text-decoration: underline;
+  text-align:center;
+    }
+
+h2{
+  color: #20B2AA;
+  font-family: bold 17px Arial, Helvetica, sans-serif;
+  font-style: italic;
+  text-align:center;
+}
+
+body{
+
+  background-color: #000000;
+  color: #F8F8FF;
+  font:normal;12px Arial, Helvetica, sans-serif;
+  line-height: 1.3em;
+  margin: 40px;
+  text-align:center;
+
+}
+
+.container{
+  width: 1000px;
+  margin:auto;
+}
+.box{
+  background-color: #FFFFF0;
+  color: Black;
+  margin: 10;
+  border: 5px #696969 solid;
+  border-style: solid;
+  padding: 5px;
+}
+
+.my-form{
+  padding: 10px;
+  line-height: 1.5em;
+  text-align: center;
+}
+    
+  </style>
+ 
+
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict Revolving Balance</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+
+
+<div class = my-form>
+
+		<label for="loanamnt">Choose a loanamnt(from 500 to 30000):</label>
+ <input type="number" id="loanamnt" name="loanamnt" min="500" max="30000">
+
+<label for="terms">Choose a term:</label>
+ <select id="terms" name="terms">
+  <option value="36">36</option>
+  <option value="60">60</option>
+ </select> 
+
+<label for="Rateofintrst">Choose applicable rate of interest(from 5 to 23):</label>
+ <input type="number" id="Rateofintrst" name="Rateofintrst" min="5" max="23">
+
+<br>
+<br>
+
+<label for="grade">Choose Grade (Please select 7 for A, 6 for B, 5 for C, 4 for D, 3 for E, 2 for F and 1 for G) :</label>
+ <input type="number" id="grade" name="grade" min="1" max="7">
+
+<label for="Experience">Choose Years Experience:</label>
+ <input type="number" id="Experience" name="Experience" min="0" max="11">
+
+<br>
+<br>
+
+<label for="annualinc">Choose annual income (from 1900 to 125000):</label>
+ <input type="number" id="annualinc" name="annualinc" min="1896" max="125000"> 
+
+<label for="verificationstatus">Choose verification status (Please select 1 for Not Verified, 2 for Verified and 3 for Source Verified):</label>
+ <select id="verificationstatus" name="verificationstatus">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+ </select> 
+
+<br>
+<br>
+
+<label for="debtincomeratio"> Choose debit income ratio (from 0 to 40):</label>
+ <input type="number" id="debtincomeratio" name="debtincomeratio" min="0" max="40">
+
+<label for="numbcredit">Choose number credit (from 0 to 22):</label>
+ <input type="number" id="numbcredit" name="numbcredit" min="0" max="22"> 
+
+<label for="totalcredits">Choose total credits (from 0 to 48):</label>
+ <input type="number" id="totalcredits" name="totalcredits" min="0" max="48"> 
+
+<br>
+<br>
+
+<label for="lastweekpay">Choose last week pay (from 0 to 160):</label>
+ <input type="number" id="lastweekpay" name="lastweekpay" min="0" max="160"> 
+
+
+<label for="totalrecint">Choose Total received Interest (from 0 to 3700):</label>
+ <input type="number" id="totalrecint" name="totalrecint" min="0" max="3700"> 
+
+<label for="totcurrbal">Choose Total Current Balance (from 0 to 300000):</label>
+ <input type="number" id="totcurrbal" name="totcurrbal" min="0" max="300000"> <br>
+
+</div>
+
+<p>
+<h2>
+Home Ownership Status
+</h2>
+  <div class="container">
+      <div class="box">
+From the below three drop down select the one that is applicable as 1 and others 0. If the customers is living on Mortgage please select Mortgage as 1 and Others as 0.
+  </div>
+    </div>
+
+
+</p>
+
+<label for="MORTGAGE">Choose Mortgage:</label>
+ <select id="MORTGAGE" name="MORTGAGE">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> 
+
+
+<label for="OWN">Choose Own:</label>
+ <select id="OWN" name="OWN">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> 
+
+
+<label for="RENT">Choose Rent:</label>
+ <select id="RENT" name="RENT">
+  <option value="0">0</option>
+	  <option value="1">1</option>
+ </select> 
+<br>
+
+<p>
+<h2>
+Purpose for Loan</h2>
+
+  <div class="container">
+    <div class="box">
+From the below list of drop down select the one that is applicable as 1 and others 0. If the customer is availing the loan for House Improvement please select House Improvement as 1 and Others as 0.
+  </div>
+    </div>
+</p>
+<br>
+
+<label for="CarsMajorpurchases">For Purchaing a Car or Other Major Purchases:</label>
+ <select id="CarsMajorpurchases" name="CarsMajorpurchases">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> 
+
+<label for="Househouseimporovements"> For Buying a House or House Imporovements:</label>
+ <select id="Househouseimporovements" name="Househouseimporovements">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> 
+
+<label for="WeddingVacation"> For Wedding or a Vacation :</label>
+ <select id="WeddingVacation" name="WeddingVacation">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> 
+
+<label for="creditcard"> For Credit Card Bill Payment:</label>
+ <select id="creditcard" name="creditcard">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> <br>
+
+<br>
+
+<label for="debtconsolidation"> For Debt Consolidation:</label>
+ <select id="debtconsolidation" name="debtconsolidation">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> 
+
+<label for="medical">For Medical Purposes:</label>
+ <select id="medical" name="medical">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> 
+
+<label for="smallbusiness">Starting up a Small Business:</label>
+ <select id="smallbusiness" name="smallbusiness">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> <br>
+
+<br>
+
+<p>
+<h2>
+Listing Status of the Loan
+</h2>
+  <div class="container">
+    <div class="box">
+From the below list of drop down select the one that is applicable as 1 and others 0. Please select 1 if it is forwarded and 0 if in waiting.
+  </div>
+    </div>
+</p>
+
+
+<label for="f">Select 1 for Forwarded and 0 for Waiting:</label>
+ <select id="f" name="f">
+  <option value="0">0</option>
+  <option value="1">1</option>
+ </select> <br> <br>
+
+
+<br>        
+<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+    {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
